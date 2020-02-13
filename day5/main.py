@@ -120,38 +120,35 @@ class IntMachine:
         if (argType == IntOp.ARG_POSITION):
           argValue = self.ops[argValue]
 
-        args.append({
-          'type': argType,
-          'value': argValue,
-        })
+        args.append(argValue);
 
       if (opcode == IntOp.OP_HALT):
         loop = False
         break
       elif (opcode == IntOp.OP_ADD):
-        self.ops[args[2]['value']] = args[0]['value'] + args[1]['value']
+        self.ops[args[2]] = args[0] + args[1]
       elif (opcode == IntOp.OP_MUL):
-        self.ops[args[2]['value']] = args[0]['value'] * args[1]['value']
+        self.ops[args[2]] = args[0] * args[1]
       elif (opcode == IntOp.OP_IN):
-        self.ops[args[0]['value']] = input("Input: ")
+        self.ops[args[0]] = input("Input: ")
       elif (opcode == IntOp.OP_OUT):
-        print "Output =", args[0]['value']
+        print "Output =", args[0]
       elif (opcode == IntOp.OP_JMP_IF_TRUE):
-        if (args[0]['value'] != 0):
-          self.ip = args[1]['value']
+        if (args[0] != 0):
+          self.ip = args[1]
       elif (opcode == IntOp.OP_JMP_IF_FALSE):
-        if (args[0]['value'] == 0):
-          self.ip = args[1]['value']
+        if (args[0] == 0):
+          self.ip = args[1]
       elif (opcode == IntOp.OP_LESS_THAN):
-        if (args[0]['value'] < args[1]['value']):
-          self.ops[args[2]['value']] = 1
+        if (args[0] < args[1]):
+          self.ops[args[2]] = 1
         else:
-          self.ops[args[2]['value']] = 0
+          self.ops[args[2]] = 0
       elif (opcode == IntOp.OP_EQUALS):
-        if (args[0]['value'] == args[1]['value']):
-          self.ops[args[2]['value']] = 1
+        if (args[0] == args[1]):
+          self.ops[args[2]] = 1
         else:
-          self.ops[args[2]['value']] = 0
+          self.ops[args[2]] = 0
 
 
 ops = open("input.txt", "r").readline().split(",");
